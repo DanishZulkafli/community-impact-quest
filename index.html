@@ -4,18 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Community Impact Quest</title>
+  <title>Community Impact Quest Pro</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="app">
     <section class="hero">
-      <span class="tag">Social Good Portfolio Project</span>
-      <h1>Community Impact Quest</h1>
-      <p>
-        Track your positive actions, earn points, unlock badges, and build a habit
-        of contributing to your community.
-      </p>
+      <div>
+        <span class="tag">Social Good Portfolio Project</span>
+        <h1>Community Impact Quest Pro</h1>
+        <p>
+          Track positive actions, complete community challenges, earn impact points,
+          unlock badges, monitor streaks, and build a meaningful social-good portfolio.
+        </p>
+
+        <div class="hero-actions">
+          <button onclick="scrollToForm()">Add Action</button>
+          <button class="ghost" onclick="generateChallenge()">Generate Challenge</button>
+          <button class="ghost" onclick="loadDemoData()">Load Demo Data</button>
+          <button class="danger" onclick="resetData()">Reset Data</button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <span>Current Badge</span>
+        <h2 id="currentBadgeHero">Starter</h2>
+        <p><strong id="totalPointsHero">0</strong> impact points</p>
+
+        <div class="progress-bg">
+          <div id="badgeProgressHero"></div>
+        </div>
+
+        <small id="nextBadgeHero">Next Badge: Good Starter</small>
+      </div>
     </section>
 
     <section class="dashboard">
@@ -30,18 +51,38 @@
       </div>
 
       <div class="stat-card">
+        <p>People Impacted</p>
+        <h2 id="peopleImpacted">0</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Hours Contributed</p>
+        <h2 id="hoursContributed">0h</h2>
+      </div>
+
+      <div class="stat-card">
         <p>Current Streak</p>
         <h2 id="currentStreak">0 Days</h2>
       </div>
 
       <div class="stat-card">
-        <p>Current Badge</p>
-        <h2 id="currentBadge">Starter</h2>
+        <p>Weekly Actions</p>
+        <h2 id="weeklyActions">0</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Impact Categories</p>
+        <h2 id="categoryCount">0</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Impact Score</p>
+        <h2 id="impactScore">0%</h2>
       </div>
     </section>
 
     <section class="layout">
-      <div class="card">
+      <div class="card" id="actionForm">
         <h2>Add New Impact Action</h2>
 
         <label for="actionTitle">Action Title</label>
@@ -49,33 +90,115 @@
 
         <label for="category">Category</label>
         <select id="category">
-          <option value="Education">Education</option>
-          <option value="Environment">Environment</option>
-          <option value="Volunteering">Volunteering</option>
-          <option value="Technology Help">Technology Help</option>
-          <option value="Health & Wellness">Health & Wellness</option>
-          <option value="Donation">Donation</option>
-          <option value="Community Support">Community Support</option>
+          <option>Education</option>
+          <option>Environment</option>
+          <option>Volunteering</option>
+          <option>Technology Help</option>
+          <option>Health & Wellness</option>
+          <option>Donation</option>
+          <option>Community Support</option>
+          <option>Career Support</option>
+          <option>Design Help</option>
+          <option>Knowledge Sharing</option>
         </select>
 
-        <label for="impactLevel">Impact Level</label>
-        <select id="impactLevel">
-          <option value="10">Small Impact - 10 points</option>
-          <option value="25">Medium Impact - 25 points</option>
-          <option value="50">High Impact - 50 points</option>
-        </select>
+        <div class="mini-grid">
+          <div>
+            <label for="impactLevel">Impact Level</label>
+            <select id="impactLevel">
+              <option value="10">Small Impact - 10 points</option>
+              <option value="25">Medium Impact - 25 points</option>
+              <option value="50">High Impact - 50 points</option>
+              <option value="80">Major Impact - 80 points</option>
+            </select>
+          </div>
 
-        <label for="notes">Notes</label>
-        <textarea id="notes" placeholder="Write short notes about your action..."></textarea>
+          <div>
+            <label for="difficulty">Difficulty</label>
+            <select id="difficulty">
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="people">People Impacted</label>
+            <input type="number" id="people" value="1" min="0" />
+          </div>
+
+          <div>
+            <label for="hours">Hours Spent</label>
+            <input type="number" id="hours" value="0.5" min="0" step="0.5" />
+          </div>
+        </div>
+
+        <label for="actionDate">Action Date</label>
+        <input type="date" id="actionDate" />
+
+        <label for="notes">Reflection Notes</label>
+        <textarea id="notes" placeholder="What did you do? Who benefited? What did you learn?"></textarea>
 
         <button onclick="addAction()">Add Impact Action</button>
         <button class="secondary" onclick="generateChallenge()">Generate Random Challenge</button>
         <button class="dark" onclick="exportCSV()">Export CSV</button>
+        <button class="dark" onclick="exportJSON()">Export JSON</button>
         <button class="danger" onclick="resetData()">Reset All Data</button>
-
-        <div id="challengeBox" class="challenge-box hidden"></div>
       </div>
 
+      <div class="card">
+        <h2>Mission Challenge Generator</h2>
+
+        <div class="mini-grid">
+          <div>
+            <label for="challengeCategory">Challenge Category</label>
+            <select id="challengeCategory">
+              <option>Any</option>
+              <option>Education</option>
+              <option>Environment</option>
+              <option>Technology Help</option>
+              <option>Health & Wellness</option>
+              <option>Donation</option>
+              <option>Community Support</option>
+              <option>Career Support</option>
+              <option>Design Help</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="challengeDifficulty">Difficulty</label>
+            <select id="challengeDifficulty">
+              <option>Any</option>
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="challengeBox" class="challenge-box">
+          <h3>No active challenge yet</h3>
+          <p>Generate a challenge to receive a meaningful social-good action idea.</p>
+          <button onclick="generateChallenge()">Generate Challenge</button>
+        </div>
+
+        <div class="recommendation">
+          <h3>AI-Style Recommendation</h3>
+          <p id="recommendationText">
+            Add your first action to receive a personalized recommendation.
+          </p>
+        </div>
+
+        <div class="badge-panel">
+          <h3>Unlocked Badges</h3>
+          <div id="badgesList">
+            <p class="empty-text">No badges unlocked yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout second">
       <div class="card">
         <h2>Impact Insights</h2>
 
@@ -84,7 +207,7 @@
             <span>Next Badge Progress</span>
             <span id="progressText">0%</span>
           </div>
-          <div class="progress-bg">
+          <div class="progress-bg light">
             <div id="progressBar" class="progress-fill"></div>
           </div>
         </div>
@@ -92,16 +215,54 @@
         <h3>Category Breakdown</h3>
         <div id="categoryBreakdown"></div>
 
-        <h3>AI-Style Recommendation</h3>
-        <div id="recommendation" class="recommendation">
-          Add your first action to receive a recommendation.
+        <h3>Difficulty Breakdown</h3>
+        <div id="difficultyBreakdown"></div>
+      </div>
+
+      <div class="card">
+        <h2>Portfolio Impact Report</h2>
+
+        <div class="report-box">
+          <h3>Summary</h3>
+          <p id="impactSummary">
+            Add actions to generate your portfolio-ready community impact summary.
+          </p>
+        </div>
+
+        <button onclick="copySummary()">Copy Summary</button>
+        <button class="secondary" onclick="printReport()">Print Report</button>
+
+        <h3>Weekly Trend</h3>
+        <div id="weeklyTrend" class="trend-box">
+          <p class="empty-text">No weekly trend yet.</p>
         </div>
       </div>
     </section>
 
     <section class="card history-card">
-      <h2>Impact Action History</h2>
-      <div id="historyList"></div>
+      <div class="history-header">
+        <div>
+          <h2>Impact Action History</h2>
+          <p>Search, filter, review, and manage your completed social-good actions.</p>
+        </div>
+
+        <div class="filters">
+          <input id="searchInput" type="text" placeholder="Search actions..." oninput="renderApp()" />
+
+          <select id="filterCategory" onchange="renderApp()">
+            <option>All Categories</option>
+          </select>
+
+          <select id="filterDifficulty" onchange="renderApp()">
+            <option>All Difficulty</option>
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="historyList" class="history-grid"></div>
     </section>
   </main>
 
