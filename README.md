@@ -1,8 +1,8 @@
-# Community Impact Quest
+# Community Impact Quest Pro
 
-Community Impact Quest is a gamified social good web application that helps users track positive community actions, earn points, unlock badges, maintain streaks, and monitor their contribution impact.
+Community Impact Quest Pro is a gamified social good web application that helps users track positive actions, complete community challenges, earn points, unlock badges, maintain streaks, monitor contribution impact, and generate a portfolio-ready impact report.
 
-This project is fully deployable using GitHub Pages.
+This project is fully static and can be deployed directly using GitHub Pages.
 
 ## Live Demo
 
@@ -13,17 +13,37 @@ Live project: https://danishzulkafli.github.io/community-impact-quest/
 - Add community impact actions
 - Track total points
 - Track total actions
-- Daily streak tracking
-- Badge system
+- Track people impacted
+- Track hours contributed
+- Track daily streak
+- Track weekly actions
+- Track impact categories
+- Impact score calculation
+- Badge progression system
 - Next badge progress bar
-- Category impact breakdown
-- AI-style contribution recommendation
 - Random community challenge generator
+- Challenge category filter
+- Challenge difficulty filter
+- Suggested challenge steps
+- Mark generated challenge as completed
+- Category impact breakdown
+- Difficulty breakdown
+- Weekly trend visualization
+- AI-style contribution recommendation
+- Unlockable achievement badges
+- Portfolio-ready impact summary
+- Copy impact summary
 - Action history
+- Search actions
+- Filter by category
+- Filter by difficulty
 - Delete action
 - Export data to CSV
+- Export data to JSON
+- Print report
+- Load demo data
 - Reset data
-- LocalStorage data persistence
+- LocalStorage persistence
 - Responsive layout
 - GitHub Pages ready
 
@@ -36,6 +56,9 @@ Live project: https://danishzulkafli.github.io/community-impact-quest/
 - Health & Wellness
 - Donation
 - Community Support
+- Career Support
+- Design Help
+- Knowledge Sharing
 
 ## Badge Levels
 
@@ -60,17 +83,33 @@ This project was created to encourage people to perform positive actions and tra
 
 It can be used by students, volunteers, clubs, NGOs, communities, and individuals who want to build a consistent social impact habit.
 
+## Portfolio Value
+
+This project demonstrates:
+
+- Frontend development
+- JavaScript logic
+- LocalStorage data persistence
+- Dashboard statistics
+- Gamification
+- Data filtering
+- Data export
+- Responsive web design
+- Social-good product thinking
+- User-centered feature planning
+
 ## Future Improvements
 
-- Add user login
-- Add shared leaderboard
-- Add real database
-- Add community groups
-- Add monthly challenges
-- Add AI-generated impact suggestions
-- Add donation tracking
-- Add volunteer event registration
-- Add PWA offline installation
+- User login
+- Shared leaderboard
+- Real database
+- Community groups
+- Monthly challenges
+- QR-code impact proof
+- Badge certificate generator
+- PDF report export
+- PWA offline mode
+- Admin dashboard
 
 ## Author
 
